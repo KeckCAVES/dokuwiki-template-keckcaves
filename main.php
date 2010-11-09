@@ -30,12 +30,9 @@ if (!defined('DOKU_INC')) die();
   <?php tpl_metaheaders()?>
 
   <link rel="shortcut icon" href="<?php echo DOKU_TPL?>images/favicon.ico" />
-
-  <?php /*old includehook*/ @include(dirname(__FILE__).'/meta.html')?>
 </head>
 
 <body>
-<?php /*old includehook*/ @include(dirname(__FILE__).'/topheader.html')?>
 <div class="dokuwiki">
   <?php html_msgarea()?>
 
@@ -51,8 +48,6 @@ if (!defined('DOKU_INC')) die();
 
       <div class="clearer"></div>
     </div>
-
-    <?php /*old includehook*/ @include(dirname(__FILE__).'/header.html')?>
 
     <div class="bar" id="bar__top">
       <div class="bar-left" id="bar__topleft">
@@ -84,8 +79,6 @@ if (!defined('DOKU_INC')) die();
   </div>
   <?php tpl_flush()?>
 
-  <?php /*old includehook*/ @include(dirname(__FILE__).'/pageheader.html')?>
-
   <div class="page">
     <!-- wikipage start -->
     <?php tpl_content()?>
@@ -106,8 +99,6 @@ if (!defined('DOKU_INC')) die();
         <?php tpl_pageinfo()?>
       </div>
     </div>
-
-   <?php /*old includehook*/ @include(dirname(__FILE__).'/pagefooter.html')?>
 
     <div class="bar" id="bar__bottom">
       <div class="bar-left" id="bar__bottomleft">
@@ -131,7 +122,12 @@ if (!defined('DOKU_INC')) die();
   <?php tpl_license(false);?>
 
 </div>
-<?php /*old includehook*/ @include(dirname(__FILE__).'/footer.html')?>
+
+<?php
+if ($conf['allowdebug']) {
+    echo '<!-- page made in '.round(delta_time(DOKU_START_TIME), 3).' seconds -->';
+}
+?>
 
 <div class="no"><?php /* provide DokuWiki housekeeping, required in all templates */ tpl_indexerWebBug()?></div>
 </body>
