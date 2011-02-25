@@ -15,6 +15,34 @@
 // must be run from within DokuWiki
 if (!defined('DOKU_INC')) die();
 
+if(plugin_isdisabled('jquery')) msg('KeckCAVES template requires jQuery plugin.', -1);
+
+// Utterly taken from tpl_searchform, but allows using an image
+// for the search button.
+function kc_searchform($ajax=true,$autocomplete=true){
+    global $lang;
+    global $ACT;
+    global $QUERY;
+
+    // don't print the search form if search action has been disabled
+    if (!actionOk('search')) return false;
+
+    print '<form action="'.wl().'" accept-charset="utf-8" class="search" id="dw__search" method="get"><div class="no">';
+    print '<input type="hidden" name="do" value="search" />';
+    print '<input type="text" ';
+    if($ACT == 'search') print 'value="'.htmlspecialchars($QUERY).'" ';
+    if(!$autocomplete) print 'autocomplete="off" ';
+    print 'id="qsearch__in" accesskey="f" name="id" class="edit" title="[F]" />';
+    print '<input type="image" alt="'.$lang['btn_search'].'" class="button" title="'.$lang['btn_search'].'" src="'.DOKU_TPL.'images/search.png" />';
+    if($ajax) print '<div id="qsearch__out" class="ajax_qsearch JSpopup"></div>';
+    print '</div></form>';
+    return true;
+}
+
+global $ACT; // Needed for template content conditional on current action
+global $ID; 
+global $INFO;
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -39,25 +67,37 @@ if (!defined('DOKU_INC')) die();
   <div class="stylehead">
 
     <div class="header">
-      <div class="pagename">
-        [[<?php tpl_link(wl($ID,'do=backlink'),tpl_pagetitle($ID,true),'title="'.$lang['btn_backlink'].'"')?>]]
-      </div>
       <div class="logo">
-        <?php tpl_link(wl(),$conf['title'],'name="dokuwiki__top" id="dokuwiki__top" accesskey="h" title="[H]"')?>
+        <?php tpl_link(wl(),'<img alt="'.$conf['title'].'" src="'.DOKU_TPL.'images/keckcaves_banner.png'.'"/>','name="dokuwiki__top" id="dokuwiki__top" accesskey="h" title="[H]"')?>
       </div>
 
       <div class="clearer"></div>
+
+    <?php if($INFO['userinfo']){?>
+        <ul id="kc_menu">
+          <?php if($r=tpl_actionlink('edit','','','',true))echo'<li>'.$r.'</li>'?>
+          <?php if($r=tpl_actionlink('history','','','',true))echo'<li>'.$r.'</li>'?>
+          <?php if($r=tpl_actionlink('revert','','','',true))echo'<li>'.$r.'</li>'?>
+          <?php if($r=tpl_actionlink('subscribe','','','',true))echo'<li>'.$r.'</li>'?>
+          <?php if($r=tpl_actionlink('profile','','','',true))echo'<li>'.$r.'</li>'?>
+          <?php if($r=tpl_actionlink('admin','','','',true))echo'<li>'.$r.'</li>'?>
+          <?php if($r=tpl_actionlink('login','',' '.hsc($INFO['userinfo']['name']),'',true))echo'<li>'.$r.'</li>'?>
+        </ul>
+     <?php }else{?>
+      <div class="user">
+        <?php tpl_actionlink('login')?>
+      </div>
+     <?php }?>
+
     </div>
 
     <div class="bar" id="bar__top">
       <div class="bar-left" id="bar__topleft">
-        <?php tpl_button('edit')?>
-        <?php tpl_button('history')?>
+        <?php tpl_include_page(tpl_getConf('tabs'))?>
       </div>
 
       <div class="bar-right" id="bar__topright">
-        <?php tpl_button('recent')?>
-        <?php tpl_searchform()?>&nbsp;
+        <?php kc_searchform()?>&nbsp;
       </div>
 
       <div class="clearer"></div>
@@ -66,7 +106,6 @@ if (!defined('DOKU_INC')) die();
     <?php if($conf['breadcrumbs']){?>
     <div class="breadcrumbs">
       <?php tpl_breadcrumbs()?>
-      <?php //tpl_youarehere() //(some people prefer this)?>
     </div>
     <?php }?>
 
@@ -79,10 +118,13 @@ if (!defined('DOKU_INC')) die();
   </div>
   <?php tpl_flush()?>
 
-  <div class="page">
+  <div class="page <?php echo $ACT?> <?php if($ID==$conf['start']) echo 'start';?>">
     <!-- wikipage start -->
     <?php tpl_content()?>
     <!-- wikipage stop -->
+    <div class="meta">
+      <?php $return=tpl_pageinfo(true); if($ACT=='show' && $return) tpl_actionlink('edit','','',$return);?>
+    </div>
   </div>
 
   <div class="clearer">&nbsp;</div>
@@ -91,35 +133,9 @@ if (!defined('DOKU_INC')) die();
 
   <div class="stylefoot">
 
-    <div class="meta">
-      <div class="user">
-        <?php tpl_userinfo()?>
-      </div>
-      <div class="doc">
-        <?php tpl_pageinfo()?>
-      </div>
-    </div>
-
-    <div class="bar" id="bar__bottom">
-      <div class="bar-left" id="bar__bottomleft">
-        <?php tpl_button('edit')?>
-        <?php tpl_button('history')?>
-        <?php tpl_button('revert')?>
-      </div>
-      <div class="bar-right" id="bar__bottomright">
-        <?php tpl_button('subscribe')?>
-        <?php tpl_button('admin')?>
-        <?php tpl_button('profile')?>
-        <?php tpl_button('login')?>
-        <?php tpl_button('index')?>
-        <?php tpl_button('top')?>&nbsp;
-      </div>
-      <div class="clearer"></div>
-    </div>
-
   </div>
 
-  <?php tpl_license(false);?>
+  <?php tpl_license(' ');?>
 
 </div>
 

@@ -10,8 +10,9 @@ div.dokuwiki .header {
   padding: 3px 0 0 2px;
 }
 
+// @TODO pagename stuff no longer needed?
 div.dokuwiki .pagename {
-  float: left;
+  float: right;
   font-size: 200%;
   font-weight: bolder;
   color: __background_alt__;
@@ -19,17 +20,19 @@ div.dokuwiki .pagename {
   vertical-align: middle;
 }
 
+// @TODO pagename stuff no longer needed?
 div.dokuwiki .pagename a {
   color: __extern__ !important;
   text-decoration: none !important;
 }
 
 div.dokuwiki .logo {
-  float: right;
+  float: left;
   font-size: 220%;
   font-weight: bolder;
   text-align: right;
   vertical-align: middle;
+  margin: 4px 0 10px 10px;
 }
 
 div.dokuwiki .logo a {
@@ -41,11 +44,60 @@ div.dokuwiki .logo a {
 
 /* ---------------  top and bottom bar ---------------- */
 div.dokuwiki .bar {
-  border-top: 1px solid __border__;
-  border-bottom: 1px solid __border__;
+//  border-top: 1px solid __border__;
+//  border-bottom: 1px solid __border__;
   background: __background_alt__;
-  padding: 0.1em 0.15em;
+//  padding: 0.1em 0.15em;
   clear: both;
+}
+
+div.dokuwiki .bar-left {
+  margin: 0;
+  padding: 0;
+}
+div.dokuwiki .bar-left ul {
+  margin: 0 1em 0 0;
+  padding: 0;
+  list-style-image: none;
+  list-style-type: none;
+  line-height: 2em;
+}
+div.dokuwiki .bar-left li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+div.dokuwiki .bar-left .li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+div.dokuwiki .bar-left .li a {
+  margin: 0;
+  padding: 0.4em 1em 0.5em 1em;
+  color: __tab_text__ !important;
+  border: none !important;
+}
+// @TODO: Move to style?
+div.dokuwiki .bar-left li a:hover {
+  background: __background_neu__;
+}
+div.dokuwiki .search input.edit {
+  margin: 3px;
+  border: 0;
+  padding: 2px;
+  width: 12em;
+  background: __background_neu__;
+  text-align: right;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+div.dokuwiki .search input.button {
+  margin: 2px;
+  border: 0;
+  padding: 0;
+  height: 1.2em;
+  background: none;
 }
 
 div.dokuwiki .bar-left {
@@ -57,23 +109,81 @@ div.dokuwiki .bar-right {
   text-align: right;
 }
 
-div.dokuwiki #bar__bottom {
-  margin-bottom: 3px;
+//div.dokuwiki #bar__bottom {
+//  position: fixed;
+//  width: 100%;
+//  top: 0;
+//  margin: 0;
+//  padding: 3px;
+//}
+
+/* ------------- Action menu ----------------------- */
+
+div.dokuwiki #kc_menu {
+  position: fixed;
+  line-height: 2em;
+  top: 0;
+  right: 0;
+  padding: 0.02em;
+  margin: 0;
+  list-style-image: none;
+  list-style-type: none;
+  border: 0;
+  border-left: 1px solid __border__;
+  border-bottom: 1px solid __border__;
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  background: __background_neu__;
+  color: __text_alt__;
+}
+div.dokuwiki #kc_menu li {
+  display: inline;
+}
+div.dokuwiki #kc_menu li:first-child a {
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+}
+div.dokuwiki #kc_menu a {
+  padding: 0.46em 0.6em;
+}
+div.dokuwiki #kc_menu a:hover {
+  background: __background_alt__;
+}
+
+div.dokuwiki div.header div.user {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  color: __text_alt__;
+  font-size: 70%;
+}
+div.dokuwiki div.user a:link,
+div.dokuwiki div.user a:visited {
+  color: __text_neu__;
+  text-decoration: none;
+}
+div.dokuwiki div.user a:hover {
+  color: __text__;
+  text-decoration: none;
 }
 
 /* ------------- File Metadata ----------------------- */
 
 div.dokuwiki div.meta {
   clear: both;
-  margin-top: 1em;
+  margin: 1em 0;
+  padding: 1em 0;
   color: __text_alt__;
   font-size: 70%;
-}
-
-div.dokuwiki div.meta div.user {
-  float: left;
-}
-
-div.dokuwiki div.meta div.doc {
   text-align: right;
 }
+div.dokuwiki div.meta a:link,
+div.dokuwiki div.meta a:visited {
+  color: __text_neu__;
+  text-decoration: none;
+}
+div.dokuwiki div.meta a:hover {
+  color: __text__;
+  text-decoration: none;
+}
+

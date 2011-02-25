@@ -10,15 +10,23 @@
 * { padding: 0; margin: 0; }
 
 body {
-  font: 80% "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
+  font: 82% "Trebuchet MS",Geneva,Arial,Helvetica,SunSans-Regular,sans-serif;
   background-color: __background__;
   color: __text__;
 }
 
+div.dokuwiki div.stylehead {
+  margin: 0 0 2em 0;
+}
+
 /* the document */
 div.dokuwiki div.page {
-  margin: 4px 2em 0 1em;
-  text-align: justify;
+  margin: 4px 1em 0 2em;
+//  text-align: justify;
+}
+div.dokuwiki div.show {
+  margin: 4px auto 0 auto;
+  max-width: 50em;
 }
 
 div.dokuwiki table {
@@ -254,7 +262,7 @@ div.dokuwiki a:visited {
 div.dokuwiki a:hover,
 div.dokuwiki a:active {
   color: __text__;
-  text-decoration: underline;
+//  text-decoration: underline;
 }
 
 div.dokuwiki h1 a,
@@ -335,10 +343,20 @@ div.dokuwiki div.preview {
 }
 
 div.dokuwiki div.breadcrumbs {
+  text-align: right;
   background-color: __background_neu__;
   color: __text_neu__;
   font-size: 80%;
-  padding: 0 0 0 4px;
+  padding: 0 0.7em 0 0;
+}
+div.dokuwiki div.breadcrumbs a:link,
+div.dokuwiki div.breadcrumbs a:visited {
+  color: __text_neu__;
+  text-decoration: none;
+}
+div.dokuwiki div.breadcrumbs a:hover {
+  color: __text__;
+  text-decoration: none;
 }
 
 div.dokuwiki span.user {
@@ -401,25 +419,25 @@ div.dokuwiki h5 {
 }
 
 /* special headlines */
-div.dokuwiki h1 {font-size: 160%; margin-left: 0px; font-weight: bold;}
-div.dokuwiki h2 {font-size: 150%; margin-left: 20px;}
-div.dokuwiki h3 {font-size: 140%; margin-left: 40px; border-bottom: none; font-weight: bold;}
-div.dokuwiki h4 {font-size: 120%; margin-left: 60px; border-bottom: none; font-weight: bold;}
-div.dokuwiki h5 {font-size: 100%; margin-left: 80px; border-bottom: none; font-weight: bold;}
+div.dokuwiki h1 {font-size: 170%; margin-left: 0px; font-weight: bold;}
+div.dokuwiki h2 {font-size: 150%; margin-left: 0px;}
+div.dokuwiki h3 {font-size: 140%; margin-left: 20px; border-bottom: none; font-weight: bold;}
+div.dokuwiki h4 {font-size: 120%; margin-left: 40px; border-bottom: none; font-weight: bold;}
+div.dokuwiki h5 {font-size: 100%; margin-left: 60px; border-bottom: none; font-weight: bold;}
 
 /* indent different sections */
 div.dokuwiki div.level1 { margin-left: 3px; }
-div.dokuwiki div.level2 { margin-left: 23px; }
-div.dokuwiki div.level3 { margin-left: 43px; }
-div.dokuwiki div.level4 { margin-left: 63px; }
-div.dokuwiki div.level5 { margin-left: 83px; }
+div.dokuwiki div.level2 { margin-left: 3px; }
+div.dokuwiki div.level3 { margin-left: 23px; }
+div.dokuwiki div.level4 { margin-left: 43px; }
+div.dokuwiki div.level5 { margin-left: 63px; }
 
 /* unordered lists */
 div.dokuwiki ul {
   line-height: 1.5em;
   list-style-type: square;
   list-style-image: none;
-  margin: 0 0 1em 3.5em;
+  margin: 0 0 1em 2.5em;
   color: __text_alt__;
 }
 
@@ -427,7 +445,7 @@ div.dokuwiki ul {
 div.dokuwiki ol {
   line-height: 1.5em;
   list-style-image: none;
-  margin: 0 0 1em 3.5em;
+  margin: 0 0 1em 2.5em;
   color: __text_alt__;
   font-weight: bold;
 }
@@ -768,8 +786,8 @@ div.footerinc {
 
 div.dokuwiki div.ajax_qsearch {
   position: absolute;
-  right: 237px;;
-  width: 200px;
+  right: 0px;
+  width: 17em;
   opacity: 0.9;
   display: none;
   font-size: 80%;
