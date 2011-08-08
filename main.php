@@ -15,8 +15,6 @@
 // must be run from within DokuWiki
 if (!defined('DOKU_INC')) die();
 
-if(plugin_isdisabled('jquery')) msg('KeckCAVES template requires jQuery plugin.', -1);
-
 // Utterly taken from tpl_searchform, but allows using an image
 // for the search button.
 function kc_searchform($ajax=true,$autocomplete=true){
@@ -39,9 +37,30 @@ function kc_searchform($ajax=true,$autocomplete=true){
     return true;
 }
 
+function tpl_localeFN($id){
+  global $conf;
+  $file = DOKU_TPLINC.'lang/'.$conf['lang'].'/'.$id.'.txt';
+  if(!@file_exists($file)){
+    //fall back to english
+    $file = DOKU_TPLINC.'lang/en/'.$id.'.txt';
+  }
+  return $file;
+}
+
+function tpl_locale_xhtml($id){
+  //fetch parsed locale
+  $html = p_cached_output(tpl_localeFN($id));
+  return $html;
+}
+
 global $ACT; // Needed for template content conditional on current action
 global $ID; 
 global $INFO;
+
+if(plugin_isdisabled('jquery')) msg('KeckCAVES template requires jQuery plugin.', -1);
+tpl_getLang(''); // Initialize language array, both template's and global.
+$do404 = $ACT == 'show' && !$INFO['exists'] && $INFO['perm'] < AUTH_EDIT;
+if($do404) header("HTTP/1.0 404 Not Found");
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -118,21 +137,32 @@ global $INFO;
   </div>
   <?php tpl_flush()?>
 
-  <div class="page <?php echo $ACT?> <?php if($ID==$conf['start']) echo 'start';?>">
-    <!-- wikipage start -->
-    <?php tpl_content()?>
-    <!-- wikipage stop -->
-    <div class="meta">
-      <?php $return=tpl_pageinfo(true); if($ACT=='show' && $return) tpl_actionlink('edit','','',$return);?>
-    </div>
-  </div>
+  <?php if($ACT=='show' && $ID==$conf['start']){?>
 
-  <div class="clearer">&nbsp;</div>
+  <div id="kc-start"><?php tpl_content(false)?></div>
+
+  <?php }else{?>
+
+  <div id="kc-colmask"><div id="kc-colleft">
+  
+    <div id="kc-col1wrap"><div id="kc-col1" class="<?php echo $ACT?>">
+      <?php if($do404) print tpl_locale_xhtml('404'); else tpl_content(false)?>
+    </div></div>
+
+    <div id="kc-col2">
+      <?php tpl_toc()?>
+    </div>
+
+  </div></div>
+
+  <?php }?>
 
   <?php tpl_flush()?>
 
-  <div class="stylefoot">
-
+  <div id="kc-footer">
+    <div class="meta">
+      <?php if($ACT=='show' && $pageinfo=tpl_pageinfo(true)) tpl_actionlink('edit','','',$pageinfo);?>
+    </div>
   </div>
 
   <?php tpl_license(' ');?>

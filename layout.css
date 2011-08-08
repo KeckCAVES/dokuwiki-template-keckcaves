@@ -77,10 +77,11 @@ div.dokuwiki .bar-left .li a {
   padding: 0.4em 1em 0.5em 1em;
   color: __tab_text__ !important;
   border: none !important;
+  background-image: none;
 }
 // @TODO: Move to style?
 div.dokuwiki .bar-left li a:hover {
-  background: __background_neu__;
+  background-color: __background_neu__;
 }
 div.dokuwiki .search input.edit {
   margin: 3px;
@@ -109,13 +110,77 @@ div.dokuwiki .bar-right {
   text-align: right;
 }
 
-//div.dokuwiki #bar__bottom {
-//  position: fixed;
-//  width: 100%;
-//  top: 0;
-//  margin: 0;
-//  padding: 3px;
-//}
+/*
+div.dokuwiki #bar__bottom {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  margin: 0;
+  padding: 3px;
+}
+*/
+
+/* ------------- Main ----------------------- */
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  background: __background__;
+  /*min-width: 30em;*/
+}
+
+div.dokuwiki #kc-start {
+  max-width: 60em;
+  padding: 0 1em;
+  margin: 0 auto;
+}
+
+div.dokuwiki #kc-colmask {
+  position: relative;
+  clear: both;
+  float: left;
+  width: 100%;
+  overflow: hidden;
+  background: __background_neu__;
+}
+
+div.dokuwiki #kc-colleft {
+  float: left;
+  width: 200%;
+  position: relative;
+  left: 13em;
+  background: __background__;
+}
+
+div.dokuwiki #kc-col1wrap {
+  float: right;
+  width: 50%;
+  position: relative;
+  right: 13em;
+  padding-bottom: 1em;
+}
+
+div.dokuwiki #kc-col1 {
+  margin: 1em 1em 0 14em;
+  position: relative;
+  right: 100%;
+  overflow: visible; /* hidden->visible because safari would cut off last pixel */ 
+}
+
+div.dokuwiki #kc-col2 {
+  margin-top: 1em;
+  float: left;
+  width: 11em;
+  position: relative;
+  right: 12em;
+}
+
+div.dokuwiki #kc-footer {
+  background-color: __background_neu__;
+  clear: both;
+}
 
 /* ------------- Action menu ----------------------- */
 
@@ -171,8 +236,8 @@ div.dokuwiki div.user a:hover {
 
 div.dokuwiki div.meta {
   clear: both;
-  margin: 1em 0;
-  padding: 1em 0;
+  margin: 0;
+  padding: 0 0.7em;
   color: __text_alt__;
   font-size: 70%;
   text-align: right;

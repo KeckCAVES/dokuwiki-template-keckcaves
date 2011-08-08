@@ -16,17 +16,7 @@ body {
 }
 
 div.dokuwiki div.stylehead {
-  margin: 0 0 2em 0;
-}
-
-/* the document */
-div.dokuwiki div.page {
-  margin: 4px 1em 0 2em;
-//  text-align: justify;
-}
-div.dokuwiki div.show {
-  margin: 4px auto 0 auto;
-  max-width: 50em;
+  margin: 0 0 0em 0;
 }
 
 div.dokuwiki table {
@@ -277,8 +267,8 @@ div.dokuwiki a.nolink {
 
 /* external link */
 div.dokuwiki a.urlextern {
-  background: transparent url(images/link_icon.gif) 0px 1px no-repeat;
-  padding: 1px 0px 1px 16px;
+  background: transparent url(images/link_icon.gif) no-repeat right top;
+  padding: 1px 14px 1px 0px;
 }
 
 /* windows share */
@@ -377,13 +367,13 @@ div.dokuwiki img.media {
 div.dokuwiki img.medialeft {
   border: 0;
   float: left;
-  margin: 0 1.5em 0 0;
+  margin: 0 1.5em 1em 0;
 }
 
 div.dokuwiki img.mediaright {
   border: 0;
   float: right;
-  margin: 0 0 0 1.5em;
+  margin: 0 0 1em 1.5em;
 }
 
 div.dokuwiki img.mediacenter {
@@ -412,10 +402,14 @@ div.dokuwiki h5 {
     background-color: inherit;
     font-size: 100%;
     font-weight: normal;
-    margin: 0 0 1em 0;
-    padding: 0.5em 0 0 0;
+    margin: 1em 0 1em 0;
+    /*padding: 0.5em 0 0 0;*/
     border-bottom: 1px solid __border__;
     clear: left;
+}
+
+div.dokuwiki h1:first-child {
+  margin-top: 0;
 }
 
 /* special headlines */
@@ -563,16 +557,10 @@ div.dokuwiki table.inline td {
 /* ---------- table of contents ------------------- */
 
 div.dokuwiki div.toc {
-  margin: 1.2em 0 0 2em;
-  float: right;
-  width: 200px;
-  font-size: 80%;
-  clear: both;
+  font-size: 85%;
 }
 
 div.dokuwiki div.tocheader {
-  border: 1px solid __border__;
-  background-color: __background_alt__;
   text-align: left;
   font-weight: bold;
   padding: 3px;
@@ -581,10 +569,9 @@ div.dokuwiki div.tocheader {
 
 div.dokuwiki span.toc_open,
 div.dokuwiki span.toc_close {
-    border: 0.4em solid __background_alt__;
-    float: right;
-    display: block;
-    margin: 0.4em 3px 0 0;
+  float: right;
+  display: block;
+  margin: 0.4em 3px 0 0;
 }
 
 div.dokuwiki span.toc_open span,
@@ -603,23 +590,20 @@ div.dokuwiki span.toc_close {
 }
 
 div.dokuwiki #toc__inside {
-  border: 1px solid __border__;
-  background-color: __background__;
   text-align: left;
-  padding: 0.5em 0 0.7em 0;
 }
 
 div.dokuwiki ul.toc {
   list-style-type: none;
   list-style-image: none;
   line-height: 1.2em;
-  padding-left: 1em;
+  padding-left: 0.5em;
   margin: 0;
 }
 
 div.dokuwiki ul.toc li {
   background: transparent url(images/tocdot2.gif) 0 0.6em no-repeat;
-  padding-left: 0.4em;
+  padding-left: 0.5em;
 }
 
 div.dokuwiki ul.toc li.clear {
