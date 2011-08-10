@@ -159,11 +159,13 @@ if($do404) header("HTTP/1.0 404 Not Found");
 
   <?php tpl_flush()?>
 
+  <?php if(!($ACT=='show' && $ID==$conf['start'])){?>
   <div id="kc-footer">
     <div class="meta">
       <?php if($ACT=='show' && $pageinfo=tpl_pageinfo(true)) tpl_actionlink('edit','','',$pageinfo);?>
     </div>
   </div>
+  <?php }?>
 
   <?php tpl_license(' ');?>
 
