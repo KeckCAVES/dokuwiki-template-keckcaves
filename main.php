@@ -57,7 +57,6 @@ global $ACT; // Needed for template content conditional on current action
 global $ID; 
 global $INFO;
 
-if(plugin_isdisabled('jquery')) msg('KeckCAVES template requires jQuery plugin.', -1);
 tpl_getLang(''); // Initialize language array, both template's and global.
 $do404 = $ACT == 'show' && !$INFO['exists'] && $INFO['perm'] < AUTH_EDIT;
 if($do404) header("HTTP/1.0 404 Not Found");
