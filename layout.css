@@ -137,6 +137,11 @@ div.dokuwiki #kc-start {
   margin: 0 auto;
 }
 
+div.dokuwiki #kc-nocol {
+  padding: 1em;
+  margin: 0 auto;
+}
+
 div.dokuwiki #kc-colmask {
   position: relative;
   clear: both;

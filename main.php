@@ -97,6 +97,7 @@ if($do404) header("HTTP/1.0 404 Not Found");
           <?php if($r=tpl_actionlink('history','','','',true))echo'<li>'.$r.'</li>'?>
           <?php if($r=tpl_actionlink('revert','','','',true))echo'<li>'.$r.'</li>'?>
           <?php if($r=tpl_actionlink('subscribe','','','',true))echo'<li>'.$r.'</li>'?>
+          <?php if($r=tpl_actionlink('media','','','',true))echo'<li>'.$r.'</li>'?>
           <?php if($r=tpl_actionlink('profile','','','',true))echo'<li>'.$r.'</li>'?>
           <?php if($r=tpl_actionlink('admin','','','',true))echo'<li>'.$r.'</li>'?>
           <?php if($r=tpl_actionlink('login','',' '.hsc($INFO['userinfo']['name']),'',true))echo'<li>'.$r.'</li>'?>
@@ -139,6 +140,10 @@ if($do404) header("HTTP/1.0 404 Not Found");
   <?php if($ACT=='show' && $ID==$conf['start']){?>
 
   <div id="kc-start"><?php tpl_content(false)?></div>
+
+  <?php } else if ($ACT=='media'){?>
+
+  <div id="kc-nocol"><?php tpl_content(false)?></div>
 
   <?php }else{?>
 
