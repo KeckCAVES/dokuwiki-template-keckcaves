@@ -72,7 +72,11 @@ div.dokuwiki .bar-left .li {
   margin: 0;
   padding: 0;
 }
-div.dokuwiki .bar-left .li a {
+div.dokuwiki .bar-left .li a,
+div.dokuwiki .bar-left .li a:link,
+div.dokuwiki .bar-left .li a:visited,
+div.dokuwiki .bar-left .li a:hover,
+div.dokuwiki .bar-left .li a:active {
   margin: 0;
   padding: 0.4em 1em 0.5em 1em;
   color: __tab_text__ !important;
