@@ -556,15 +556,16 @@ div.dokuwiki table.inline td {
 
 /* ---------- table of contents ------------------- */
 
-div.dokuwiki div.toc {
+div.dokuwiki div#dw__toc {
   font-size: 85%;
 }
 
-div.dokuwiki div.tocheader {
+div.dokuwiki div#dw__toc h3 {
+  font-size: 85%;
   text-align: left;
   font-weight: bold;
-  padding: 3px;
-  margin-bottom: 2px;
+  padding: 0px;
+  margin: 0;
 }
 
 div.dokuwiki span.toc_open,
